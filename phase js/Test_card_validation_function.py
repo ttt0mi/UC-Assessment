@@ -43,3 +43,11 @@ class TestCardValidationFunction(TestCase):
 		self.assertEqual(cardIssuer(validity, card_number), {'valid': False, 'reason': "Card Issuer does not exist"})
 
 
+
+	def test_card_validation_invalid2(self):
+		card_number = []
+		validity = {}
+		card_number_check = "476379199292"
+		self.assertEqual(validation(validity, card_number, card_number_check), {{'valid': False, 'reason' : "Invalid length"})
+
+
