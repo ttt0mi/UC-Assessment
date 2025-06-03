@@ -1,5 +1,8 @@
 const prompt = require("prompt-sync")();
 
+let transactions = []
+let proceed = true
+
 const BalanceCheck =(balance)=>{
 
 	balanceStr = balance.toString()
@@ -52,31 +55,28 @@ const AmountCheck =(balance, amount)=>{
 
 
 
-
-const Withdraw =(transaction, balance, amount)=>{
+const Withdraw =(transactions, balance, amount)=>{
 
 	balance -= (amount + 100)
 	
 	transactions.push({'withdrawal amount' : amount, 'withdrawal fee' : 100, 'remaining balance' : account_balance})
 	return balance
 
+}
 
-/*
+
 const details =(transactions) =>{
 
 	for(let transaction in transactions){
-		for(let iden, info of transaction.entries()){
+		for(const [iden, info] of transaction.entries()){
 			console.log(`${iden}: £${info}`)
 		console.log()
 	}
 
-*/
+}
 
 
 
-
-let transactions = []
-let proceed = true
 
 while(proceed){
 
@@ -102,9 +102,9 @@ while(proceed){
 		amount = AmountCheck(balance, amount)
 		balance = Withdraw(transaction, balance, amount)
 		console.log("Transaction Successful!")
-		//details(transactions)
+		details(transactions)
 
-		while(pocceed){
+		while(proceed){
 			let choice = prompt("do you want to make another withdrawal. |yes or no|: ")
 			choice = choice.toLowerCase()
 
